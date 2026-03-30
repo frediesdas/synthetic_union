@@ -260,6 +260,14 @@ export default function App() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [selectedContestantId]);
 
+  useEffect(() => {
+    const isModalOpen = Boolean(selectedContestantId || selectedResultId);
+    document.body.classList.toggle("modal-open", isModalOpen);
+    return () => {
+      document.body.classList.remove("modal-open");
+    };
+  }, [selectedContestantId, selectedResultId]);
+
   const contestantMap = useMemo(
     () => new Map(contestants.map((contestant) => [contestant.id, contestant])),
     [contestants]
@@ -879,6 +887,34 @@ export default function App() {
             </div>
           </section>
         </section>
+        )}
+
+        {activeSection === "voting" && !canSubmit && (
+          <div className="vote-progress-dock">
+            <div className="vote-progress-copy">
+              <strong>
+                {remainingPoints.length === 0
+                  ? "Alle Punkte vergeben"
+                  : `${remainingPoints.length} Punktefelder noch offen`}
+              </strong>
+              <p>
+                {remainingPoints.length === 0
+                  ? "Du kannst jetzt deine Stimme absenden."
+                  : "Offene Punkte leuchten auf. Bereits genutzte Zahlen sind abgedunkelt."}
+              </p>
+            </div>
+
+            <div className="vote-progress-points" aria-label="Status deiner Punktevergabe">
+              {POINT_SELECTION_ORDER.map((points) => (
+                <span
+                  className={`progress-point ${pointAssignments.has(points) ? "is-used" : "is-open"}`}
+                  key={points}
+                >
+                  {points}
+                </span>
+              ))}
+            </div>
+          </div>
         )}
 
         {activeSection === "voting" && canSubmit && (
