@@ -228,7 +228,7 @@ export default function App() {
         setContestants(payload.contestants);
         setResults(payload.results);
         setHasVoted(payload.hasVoted);
-        setActiveSection(payload.hasVoted ? "overview" : "voting");
+        setActiveSection("overview");
       } catch (err) {
         if (err instanceof DOMException && err.name === "AbortError") {
           return;
@@ -318,6 +318,7 @@ export default function App() {
   const selectedResult = selectedResultId ? resultsById.get(selectedResultId) : null;
   const highlightedParticipants = useMemo(() => contestants.slice(0, 8), [contestants]);
   const isOverview = activeSection === "overview";
+  const isVoting = activeSection === "voting";
   const activeSectionLabel =
     SECTION_ITEMS.find((section) => section.id === activeSection)?.label ?? "Synthetic Union";
 
@@ -503,7 +504,7 @@ export default function App() {
         </header>
       )}
 
-      <main className={`content ${isOverview ? "" : "content-compact"}`}>
+      <main className={`content ${isOverview ? "" : "content-compact"} ${isVoting ? "content-voting" : ""}`}>
         {error && <div className="notice notice-error">{error}</div>}
 
         {hasVoted && (
@@ -554,22 +555,6 @@ export default function App() {
                 <span className="summary-count">
                   {assignedEntries.length}/{POINT_VALUES.length}
                 </span>
-              </div>
-
-              <div className="chips">
-                {POINT_SELECTION_ORDER.map((points) => {
-                  const entryId = pointAssignments.get(points);
-                  const contestant = entryId ? contestantMap.get(entryId) : null;
-
-                  return (
-                    <div className={`chip ${contestant ? "is-filled" : ""}`} key={points}>
-                      <span className="chip-points">{points}</span>
-                      <span className="chip-label">
-                        {contestant ? contestant.countryName : "offen"}
-                      </span>
-                    </div>
-                  );
-                })}
               </div>
 
               <div className="selected-list">
@@ -769,17 +754,16 @@ export default function App() {
             </section>
 
             <aside className="panel">
-              <div className="panel-header-row">
-                <div>
-                  <p className="panel-kicker">Deine letzte Stimme</p>
-                  <h2>So hast du gewertet</h2>
+                <div className="panel-header-row">
+                  <div>
+                    <h2>So hast du gewertet</h2>
+                  </div>
                 </div>
-              </div>
 
               {submittedVoteDetails.length === 0 ? (
-                <div className="empty-state compact">
-                  <p>Nach deiner ersten Stimmabgabe wird deine persönliche Top 10 hier gezeigt.</p>
-                </div>
+                  <div className="empty-state compact">
+                    <p>Nach deiner Stimmabgabe wird deine persönliche Top 10 hier gezeigt.</p>
+                  </div>
               ) : (
                 <div className="selected-list">
                   {submittedVoteDetails.map((entry) => (
@@ -897,32 +881,17 @@ export default function App() {
         </section>
         )}
 
-        {activeSection === "voting" && (
-        <div className="vote-progress-dock">
-          <div className="vote-progress-copy">
-            <strong>
-              {remainingPoints.length === 0
-                ? "Alle Punkte vergeben"
-                : `${remainingPoints.length} Punktefelder noch offen`}
-            </strong>
-            <p>
-              {remainingPoints.length === 0
-                ? "Du kannst jetzt deine Stimme absenden."
-                : "Offene Punkte leuchten auf. Bereits genutzte Zahlen sind abgedunkelt."}
-            </p>
+        {activeSection === "voting" && canSubmit && (
+          <div className="vote-submit-dock">
+            <button
+              className="primary-button"
+              disabled={hasVoted || submitting || loading}
+              onClick={handleSubmit}
+              type="button"
+            >
+              {submitting ? "Stimme wird gespeichert..." : "Jetzt verbindlich abstimmen"}
+            </button>
           </div>
-
-          <div className="vote-progress-points" aria-label="Status deiner Punktevergabe">
-            {POINT_SELECTION_ORDER.map((points) => (
-              <span
-                className={`progress-point ${pointAssignments.has(points) ? "is-used" : "is-open"}`}
-                key={points}
-              >
-                {points}
-              </span>
-            ))}
-          </div>
-        </div>
         )}
       </main>
 
