@@ -360,7 +360,7 @@ img {
 }
 
 .content-voting {
-  padding-bottom: calc(26rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(20rem + env(safe-area-inset-bottom, 0px));
 }
 
 .content-compact {
@@ -1796,7 +1796,18 @@ img {
   }
 
   .vote-progress-dock {
+    display: grid;
+    bottom: 0.6rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .vote-progress-copy {
     display: none;
+  }
+
+  .vote-progress-points {
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 0.35rem;
   }
 
   .results-layout {
@@ -1845,11 +1856,11 @@ img {
   }
 
   .summary-panel .primary-button {
-    margin-bottom: 12rem;
+    margin-bottom: 8rem;
   }
 
   .summary-panel {
-    padding-bottom: 10rem;
+    padding-bottom: 6rem;
   }
 
 .section-heading,

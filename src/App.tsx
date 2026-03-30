@@ -597,7 +597,7 @@ export default function App() {
                   ? "Dieses Gerät hat schon abgestimmt."
                   : remainingPoints.length === 0
                     ? "Perfekt: Alle zehn Punktwerte sind vergeben."
-                    : `Noch offen: ${remainingPoints.join(", ")}`}
+                    : ""}
               </p>
             </aside>
 
