@@ -1,3 +1,43 @@
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Inter-400.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Inter-500.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Inter-600.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Inter-700.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Inter-800.ttf") format("truetype");
+}
+
 :root {
   color-scheme: dark;
   font-family: "Inter", sans-serif;
@@ -1778,7 +1818,19 @@ img {
   .results-layout .panel,
   .results-bottom-grid .panel,
   .modal-card {
-    padding: 1.2rem 1.6rem;
+    padding: 1.2rem;
+  }
+
+  .contestant-grid {
+    margin: 0;
+  }
+
+  .contestant-card {
+    border-radius: 1.55rem;
+  }
+
+  .contestants-panel {
+    padding: 0;
   }
 
   .modal-card {
@@ -1992,4 +2044,88 @@ img {
   .vote-progress-points {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
+}
+
+.legal-footer {
+  margin-top: 6rem;
+  padding: 2.2rem 1.6rem 2.6rem;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 252, 0.12);
+}
+
+.legal-links {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.legal-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.legal-links a:hover,
+.legal-links a:focus-visible {
+  color: #ffffff;
+  border-bottom-color: var(--border-strong);
+}
+
+.legal-page {
+  padding: 3.5rem 1.6rem 5rem;
+}
+
+.legal-page-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+.legal-back {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  align-self: start;
+  border-bottom: 1px solid var(--border);
+  width: fit-content;
+}
+
+.legal-back:hover,
+.legal-back:focus-visible {
+  border-bottom-color: var(--border-strong);
+}
+
+.legal-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.legal-block h2 {
+  margin: 0 0 1rem;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+}
+
+.legal-block p {
+  margin: 0 0 0.9rem;
+  color: var(--text-soft);
+}
+
+.legal-block ul {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+  color: var(--text-soft);
+}
+
+.legal-block li {
+  margin-bottom: 0.35rem;
 }

@@ -202,9 +202,272 @@ export default function App() {
     "bio" | "country" | "lyrics" | null
   >(null);
   const [selectedResultId, setSelectedResultId] = useState<string | null>(null);
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
+  const isPrivacyPage = pathname === "/datenschutz";
+  const isImprintPage = pathname === "/impressum";
+  const isLegalPage = isPrivacyPage || isImprintPage;
+
+  const privacyContent = (
+    <section className="legal-block" aria-labelledby="datenschutz-heading">
+      <h2 id="datenschutz-heading">Datenschutzerklärung</h2>
+      <p>1. Einleitung und Kontaktdaten des Verantwortlichen</p>
+      <p>
+        Wir freuen uns, dass du unsere Website besuchst. Im Folgenden informieren wir dich darüber,
+        wie wir deine personenbezogenen Daten bei der Nutzung dieser Website verarbeiten.
+      </p>
+      <p>
+        Verantwortlicher für die Datenverarbeitung auf dieser Website im Sinne der
+        Datenschutz-Grundverordnung ist:
+      </p>
+      <p>
+        Florian Fred Wolter
+        <br />
+        c/o Postflex #9156
+        <br />
+        Deliberate Dissonance – Non-Conforming Design
+        <br />
+        Emsdettener Str. 10
+        <br />
+        48268 Greven
+        <br />
+        Deutschland
+        <br />
+        Telefon: 030 25748448
+        <br />
+        E-Mail: mail@deliberatedissonance.xyz
+      </p>
+      <p>
+        Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte oder
+        identifizierbare natürliche Person beziehen. Dazu können auch Online-Kennungen und
+        gerätebezogene Identifikatoren gehören.
+      </p>
+      <p>2. Datenerfassung beim Besuch unserer Website</p>
+      <p>
+        Bei der Nutzung unserer Website werden technisch erforderliche Daten verarbeitet, die dein
+        Browser oder dein Endgerät an den Server übermitteln. Dazu gehören insbesondere:
+      </p>
+      <ul>
+        <li>aufgerufene Seiten und Dateien</li>
+        <li>Datum und Uhrzeit des Zugriffs</li>
+        <li>IP-Adresse</li>
+        <li>Browsertyp und Browserversion</li>
+        <li>verwendetes Betriebssystem</li>
+        <li>User-Agent</li>
+        <li>Referrer-URL</li>
+        <li>Menge der übertragenen Daten</li>
+      </ul>
+      <p>
+        Die Verarbeitung dieser Daten ist erforderlich, um die Website bereitzustellen, die
+        Stabilität und Sicherheit des Systems zu gewährleisten und Missbrauch zu erkennen oder
+        abzuwehren.
+      </p>
+      <p>
+        Rechtsgrundlage für diese Verarbeitung ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes
+        Interesse liegt im sicheren, stabilen und funktionsfähigen Betrieb dieser Website.
+      </p>
+      <p>3. Hosting und Server-Logfiles über Vercel</p>
+      <p>
+        Für das Hosting unserer Website und die technische Auslieferung der Inhalte nutzen wir
+        Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.
+      </p>
+      <p>
+        Im Rahmen des Hostings werden die beim Aufruf der Website anfallenden technischen
+        Zugriffsdaten auf den Servern von Vercel verarbeitet. Dazu gehören insbesondere IP-Adresse,
+        Zeitstempel, Browser- und Geräteinformationen sowie weitere Verbindungs- und Systemdaten,
+        soweit diese für die Auslieferung, Stabilität und Sicherheit der Website erforderlich sind.
+      </p>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt im
+        sicheren technischen Betrieb der Website.
+      </p>
+      <p>4. Nutzung von Supabase für die Abstimmungsfunktion</p>
+      <p>
+        Für die technische Durchführung der Abstimmungsfunktion und die Speicherung abgegebener
+        Stimmen nutzen wir Supabase.
+      </p>
+      <p>Im Rahmen der Abstimmung werden nach aktuellem Stand insbesondere folgende Daten gespeichert:</p>
+      <ul>
+        <li>device_id</li>
+        <li>allocations</li>
+        <li>created_at</li>
+      </ul>
+      <p>
+        Die device_id dient der technischen Wiedererkennung eines Endgeräts im Rahmen der
+        Abstimmungslogik. allocations enthält die abgegebene Punkteverteilung. created_at speichert
+        den Zeitpunkt der Stimmabgabe.
+      </p>
+      <p>
+        Die Verarbeitung dieser Daten erfolgt, um die Abstimmungsfunktion bereitzustellen, Stimmen
+        zu speichern, Mehrfachabstimmungen zu begrenzen und die Integrität des Votings zu sichern.
+      </p>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der
+        ordnungsgemäßen und manipulationsarmen Durchführung der Abstimmung.
+      </p>
+      <p>5. Lokale Speicherung im Browser</p>
+      <p>
+        Diese Website verwendet Local Storage im Browser des Endgeräts. Dabei werden nach aktuellem
+        Stand insbesondere folgende Informationen lokal gespeichert:
+      </p>
+      <ul>
+        <li>melodai-festivalen-device-id</li>
+        <li>melodai-festivalen-last-vote</li>
+      </ul>
+      <p>
+        Die Speicherung dient dazu, das Endgerät technisch wiederzuerkennen, den Zustand der
+        Abstimmung zu verwalten und die zuletzt abgegebene Punkteverteilung lokal verfügbar zu
+        halten.
+      </p>
+      <p>
+        Rechtsgrundlage für das Speichern oder Auslesen solcher Informationen auf dem Endgerät ist
+        § 25 TDDDG, soweit dies unbedingt erforderlich ist, um den von dir ausdrücklich gewünschten
+        digitalen Dienst bereitzustellen. Soweit zusätzlich personenbezogene Daten verarbeitet
+        werden, erfolgt dies auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
+      </p>
+      <p>6. Durchführung der Abstimmung</p>
+      <p>
+        Wenn du auf der Website abstimmst, verarbeiten wir die von dir abgegebene Punkteverteilung
+        sowie die zugehörige technische Gerätekennung und den Zeitpunkt der Stimmabgabe.
+      </p>
+      <p>Diese Verarbeitung erfolgt zu folgenden Zwecken:</p>
+      <ul>
+        <li>technische Durchführung der Abstimmung</li>
+        <li>Speicherung der abgegebenen Stimme</li>
+        <li>Begrenzung von Mehrfachabstimmungen</li>
+        <li>Sicherung der Integrität und Funktionsfähigkeit des Votings</li>
+      </ul>
+      <p>
+        Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Unser berechtigtes Interesse liegt in der
+        verlässlichen und fairen Durchführung des Votings.
+      </p>
+      <p>7. Externe Links</p>
+      <p>
+        Unsere Website enthält externe Links zu Angeboten Dritter, insbesondere zu DistroKid. Wenn
+        du auf einen solchen Link klickst, verlässt du unsere Website. Für die Datenverarbeitung auf
+        der verlinkten Website ist ausschließlich der jeweilige Anbieter verantwortlich. Es gelten
+        dann dessen Datenschutzbestimmungen.
+      </p>
+      <p>8. Empfänger personenbezogener Daten</p>
+      <p>
+        Empfänger personenbezogener Daten können im Rahmen der hier beschriebenen Verarbeitung
+        insbesondere sein:
+      </p>
+      <ul>
+        <li>Vercel Inc. als Hosting-Anbieter</li>
+        <li>Supabase als Anbieter der Backend- und Datenbankinfrastruktur</li>
+      </ul>
+      <p>
+        Eine darüber hinausgehende Weitergabe erfolgt nur, wenn dies gesetzlich erlaubt ist oder wir
+        hierzu verpflichtet sind.
+      </p>
+      <p>9. Drittlandübermittlungen</p>
+      <p>
+        Im Zusammenhang mit dem Einsatz von Vercel und Supabase kann nicht ausgeschlossen werden,
+        dass personenbezogene Daten auch in Staaten außerhalb der Europäischen Union oder des
+        Europäischen Wirtschaftsraums verarbeitet werden.
+      </p>
+      <p>
+        Soweit dabei Daten in Drittländer übermittelt werden, erfolgt dies auf Grundlage der jeweils
+        anwendbaren datenschutzrechtlichen Garantien.
+      </p>
+      <p>10. Dauer der Speicherung</p>
+      <p>
+        Wir speichern personenbezogene Daten nur so lange, wie dies für die jeweiligen Zwecke
+        erforderlich ist.
+      </p>
+      <p>Das bedeutet im Einzelnen insbesondere:</p>
+      <ul>
+        <li>
+          Server-Logdaten werden nur so lange gespeichert, wie dies für den sicheren Betrieb und die
+          technische Analyse erforderlich ist.
+        </li>
+        <li>
+          In Supabase gespeicherte Abstimmungsdaten werden so lange gespeichert, wie dies für die
+          Durchführung, Auswertung und Integrität des Votings erforderlich ist.
+        </li>
+        <li>
+          Im Local Storage gespeicherte Daten bleiben auf deinem Endgerät gespeichert, bis sie durch
+          dich gelöscht, durch den Browser entfernt oder durch die Anwendung überschrieben werden.
+        </li>
+      </ul>
+      <p>11. Rechte der betroffenen Personen</p>
+      <p>Dir stehen gegenüber uns insbesondere folgende Rechte zu:</p>
+      <ul>
+        <li>Recht auf Auskunft gemäß Art. 15 DSGVO</li>
+        <li>Recht auf Berichtigung gemäß Art. 16 DSGVO</li>
+        <li>Recht auf Löschung gemäß Art. 17 DSGVO</li>
+        <li>Recht auf Einschränkung der Verarbeitung gemäß Art. 18 DSGVO</li>
+        <li>Recht auf Datenübertragbarkeit gemäß Art. 20 DSGVO</li>
+        <li>Recht auf Widerspruch gemäß Art. 21 DSGVO</li>
+        <li>Recht auf Beschwerde bei einer Datenschutzaufsichtsbehörde gemäß Art. 77 DSGVO</li>
+      </ul>
+      <p>12. Widerspruchsrecht</p>
+      <p>
+        Soweit wir personenbezogene Daten auf Grundlage unseres berechtigten Interesses gemäß Art. 6
+        Abs. 1 lit. f DSGVO verarbeiten, hast du das Recht, aus Gründen, die sich aus deiner
+        besonderen Situation ergeben, jederzeit Widerspruch gegen diese Verarbeitung mit Wirkung für
+        die Zukunft einzulegen.
+      </p>
+      <p>
+        Machen wir keine zwingenden schutzwürdigen Gründe für die Verarbeitung geltend, die deine
+        Interessen, Rechte und Freiheiten überwiegen, oder dient die Verarbeitung nicht der
+        Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen, werden wir die betroffene
+        Verarbeitung einstellen.
+      </p>
+      <p>13. Aktualität dieser Datenschutzerklärung</p>
+      <p>
+        Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich technische Funktionen,
+        eingesetzte Dienste oder rechtliche Anforderungen ändern.
+      </p>
+      <p>Stand: 30.03.2026</p>
+    </section>
+  );
+
+  const imprintContent = (
+    <section className="legal-block" aria-labelledby="impressum-heading">
+      <h2 id="impressum-heading">Impressum</h2>
+      <p>
+        Florian Fred Wolter c/o Postflex #9156
+        <br />
+        Deliberate Dissonance – Non-Conforming Design
+        <br />
+        Emsdettener Str. 10
+        <br />
+        48268 Greven
+        <br />
+        Deutschland
+      </p>
+      <p>
+        Tel.: 030 25748448
+        <br />
+        E-Mail: mail@deliberatedissonance.xyz
+      </p>
+      <p>Umsatzsteuer-Identifikationsnummer: DE349552073</p>
+      <p>
+        Verantwortliche/r i.S.d. § 18 Abs. 2 MStV:
+        <br />
+        Florian Fred Wolter c/o Postflex #9156, Emsdettener Str. 10, 48268 Greven
+      </p>
+      <p>
+        Zuständige Aufsichtsbehörde für das Angebot audiovisueller Mediendienste:
+        <br />
+        Medienanstalt Berlin-Brandenburg (mabb), Kleine Präsidentenstraße 1, 10178 Berlin,
+        Deutschland
+      </p>
+      <p>
+        Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer
+        Verbraucherschlichtungsstelle weder verpflichtet noch bereit.
+      </p>
+    </section>
+  );
 
   useEffect(() => {
     const controller = new AbortController();
+
+    if (isLegalPage) {
+      setLoading(false);
+      return () => controller.abort();
+    }
 
     async function loadBootstrap() {
       try {
@@ -243,7 +506,7 @@ export default function App() {
     void loadBootstrap();
 
     return () => controller.abort();
-  }, [deviceId]);
+  }, [deviceId, isLegalPage]);
 
   useEffect(() => {
     if (!selectedContestantId) {
@@ -451,7 +714,20 @@ export default function App() {
       <div className="background-glow background-glow-left" />
       <div className="background-glow background-glow-right" />
 
-      {isOverview && (
+      {isLegalPage ? (
+        <main className="legal-page">
+          <div className="legal-page-inner">
+            <a className="legal-back" href="/">
+              Zurück zur Startseite
+            </a>
+            <div className="legal-grid">
+              {isPrivacyPage ? privacyContent : imprintContent}
+            </div>
+          </div>
+        </main>
+      ) : (
+        <>
+          {isOverview && (
         <header className="hero">
           <div className="hero-backdrop" />
           <div className="hero-content">
@@ -889,20 +1165,22 @@ export default function App() {
         </section>
         )}
 
-        {activeSection === "voting" && !canSubmit && (
+        {activeSection === "voting" && (
           <div className="vote-progress-dock">
-            <div className="vote-progress-copy">
-              <strong>
-                {remainingPoints.length === 0
-                  ? "Alle Punkte vergeben"
-                  : `${remainingPoints.length} Punktefelder noch offen`}
-              </strong>
-              <p>
-                {remainingPoints.length === 0
-                  ? "Du kannst jetzt deine Stimme absenden."
-                  : "Offene Punkte leuchten auf. Bereits genutzte Zahlen sind abgedunkelt."}
-              </p>
-            </div>
+            {!canSubmit && (
+              <div className="vote-progress-copy">
+                <strong>
+                  {remainingPoints.length === 0
+                    ? "Alle Punkte vergeben"
+                    : `${remainingPoints.length} Punktefelder noch offen`}
+                </strong>
+                <p>
+                  {remainingPoints.length === 0
+                    ? "Du kannst jetzt deine Stimme absenden."
+                    : "Offene Punkte leuchten auf. Bereits genutzte Zahlen sind abgedunkelt."}
+                </p>
+              </div>
+            )}
 
             <div className="vote-progress-points" aria-label="Status deiner Punktevergabe">
               {POINT_SELECTION_ORDER.map((points) => (
@@ -930,6 +1208,12 @@ export default function App() {
           </div>
         )}
       </main>
+      <footer className="legal-footer">
+        <div className="legal-links">
+          <a href="/datenschutz">Datenschutz</a>
+          <a href="/impressum">Impressum</a>
+        </div>
+      </footer>
 
       {selectedContestant && (
         <div
@@ -953,7 +1237,9 @@ export default function App() {
                 alt={`Artistbild von ${selectedContestant.artist}`}
                 className="detail-art-image"
                 src={getPortraitImagePath(selectedContestant.startNumber)}
-                style={{ objectPosition: "center center" }}
+                style={{
+                  objectPosition: selectedContestant.artistImagePosition ?? "center 18%"
+                }}
               />
               <div className="detail-hero-overlay">
                 <div className="detail-topline">
@@ -1117,6 +1403,9 @@ export default function App() {
             </div>
           </div>
         </div>
+      )}
+
+        </>
       )}
     </div>
   );
