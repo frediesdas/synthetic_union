@@ -1364,7 +1364,10 @@ export default function App() {
                 />
                 <div className="results-hero-overlay">
                   <div className="results-hero-topline">
-                    <span className="start-number">{formatStartNumber(selectedResult.rank)}</span>
+                    <span className="start-number" aria-label={`Aktuelle Platzierung ${selectedResult.rank}`}>
+                      <span className="rank-label">Rang</span>
+                      {formatStartNumber(selectedResult.rank)}
+                    </span>
                   </div>
                   <div className="results-hero-copy">
                     <h2>{selectedResult.artist}</h2>
