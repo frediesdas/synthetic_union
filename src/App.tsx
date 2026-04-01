@@ -1368,19 +1368,21 @@ export default function App() {
                   </div>
                   <div className="results-hero-copy">
                     <h2>{selectedResult.artist}</h2>
-                    <div className="info-chip music-chip">
-                      <span aria-hidden="true" className="chip-icon">
-                        ♪
-                      </span>
-                      <span>{selectedResult.songTitle}</span>
-                    </div>
-                    <div className="info-chip country-chip">
-                      <img
-                        alt={`Flagge ${selectedResult.countryName}`}
-                        className="chip-flag"
-                        src={selectedResult.flagPath}
-                      />
-                      <span>{selectedResult.countryName}</span>
+                    <div className="results-hero-chips">
+                      <div className="info-chip music-chip">
+                        <span aria-hidden="true" className="chip-icon">
+                          ♪
+                        </span>
+                        <span>{selectedResult.songTitle}</span>
+                      </div>
+                      <div className="info-chip country-chip">
+                        <img
+                          alt={`Flagge ${selectedResult.countryName}`}
+                          className="chip-flag"
+                          src={selectedResult.flagPath}
+                        />
+                        <span>{selectedResult.countryName}</span>
+                      </div>
                     </div>
                   </div>
                 </div>

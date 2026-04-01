@@ -788,6 +788,7 @@ img {
   display: flex;
   gap: 0.55rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .info-chip {
@@ -804,6 +805,7 @@ img {
   color: #fffffc;
   font-size: 0.82rem;
   font-weight: 600;
+  line-height: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -834,6 +836,7 @@ img {
 }
 
 .chip-flag {
+  display: block;
   width: 1.55rem;
   height: 1.05rem;
   border-radius: 0.32rem;
@@ -1148,6 +1151,29 @@ img {
   margin: 0;
   font-size: clamp(1.8rem, 4vw, 2.4rem);
   line-height: 1.05;
+}
+
+.results-hero-copy {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
+.results-hero-chips {
+  display: flex;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.results-hero-chips .info-chip {
+  align-items: center;
+  line-height: 1;
+}
+
+.results-hero-chips .chip-flag,
+.results-hero-chips .chip-icon {
+  align-self: center;
 }
 
 .breakdown-card {
@@ -1704,6 +1730,16 @@ img {
 
 .detail-chips {
   gap: 0.6rem;
+  align-items: center;
+}
+
+.detail-chips .info-chip {
+  align-items: center;
+}
+
+.detail-chips .chip-flag,
+.detail-chips .chip-icon {
+  align-self: center;
 }
 
 .detail-body {
