@@ -205,7 +205,8 @@ export default function App() {
   const pathname = typeof window !== "undefined" ? window.location.pathname : "/";
   const isPrivacyPage = pathname === "/datenschutz";
   const isImprintPage = pathname === "/impressum";
-  const isLegalPage = isPrivacyPage || isImprintPage;
+  const isAboutPage = pathname === "/ueber-synthetic-union";
+  const isLegalPage = isPrivacyPage || isImprintPage || isAboutPage;
 
   const privacyContent = (
     <section className="legal-block" aria-labelledby="datenschutz-heading">
@@ -457,6 +458,60 @@ export default function App() {
       <p>
         Wir sind zur Teilnahme an einem Streitbeilegungsverfahren vor einer
         Verbraucherschlichtungsstelle weder verpflichtet noch bereit.
+      </p>
+    </section>
+  );
+
+  const aboutContent = (
+    <section className="legal-block about-block" aria-labelledby="about-heading">
+      <h1 id="about-heading">Synthetic Union – A Eurovision-inspired Music Festival</h1>
+      <p>
+        Seit über 30 Jahren verfolge ich den Eurovision Song Contest, man kann wohl sagen, er ist
+        mein absolutes Spezialinteresse. Die Grundidee, die man damals in den 1950er Jahren hatte,
+        war ja eigentlich so simpel wie gut: Europa lag noch in Trümmern, und dieses neue Medium
+        namens Fernsehen sollte die Menschen für einen Abend zusammenbringen. Es war als Flucht aus
+        dem Alltag gedacht. Ein Raum, in dem man die Risse in der Welt für ein paar Stunden einfach
+        vergisst.
+      </p>
+      <p>
+        Wer sich den ESC heute ansieht, wird von diesem Geist allerdings nur noch wenig finden. Die
+        Realität hat die Show regelrecht erdrückt. Zugegeben, die Risse waren immer da – schon 1993
+        musste die bosnische Band Fazla unter Scharfschützenfeuer aus Sarajevo fliehen, um überhaupt
+        auf der Bühne zu stehen. Aber heute ist der Contest zu einem offenen kulturellen
+        Schlachtfeld geworden. Es geht um den Krieg in der Ukraine, den Konflikt in Gaza, es gibt
+        massive Sicherheitsaufgebote und westliche Demokratien drohen offen mit Boykott für 2026.
+        Lieder müssen umgeschrieben werden, weil ihre Texte zu politisch sind. Man spürt vor allem
+        Abgrenzung, Wut, das ständige Bedürfnis nach Statements. Der ursprüngliche Geist der
+        Verbindung geht in all dem unter.
+      </p>
+      <p>
+        Ich wollte diesen Geist irgendwie zurückholen. Denn ich glaube daran, dass Musik verbindet
+        und dass Musik heilen kann. Um genau das zu zeigen, habe ich in den vergangenen anderthalb
+        Jahren meine eigene Welt erschaffen.
+      </p>
+      <p>
+        Ich habe nie gelernt, ein Instrument zu spielen oder Noten zu lesen. Aber die künstliche
+        Intelligenz gab mir plötzlich das Werkzeug in die Hand, meine Idee Wirklichkeit werden zu
+        lassen. Das Ergebnis ist: Synthetic Union.
+      </p>
+      <p>
+        Es besteht aus 31 Liedern, 31 Ländern und 31 Artists. Es gibt 31 Flaggen und Ländercodes.
+        Von der klassischen großen Ballade über Rock bis hin zum Sommer-Pop-Song ist alles dabei, um
+        genau jenen Querschnitt abzubilden, den man auch vom Eurovision Song Contest kennt. Der
+        einzige Unterschied zur Realität ist: Weder diese Länder, noch die Sprachen oder die
+        Artists existieren wirklich.
+      </p>
+      <p>
+        Die Sprachen sind sogenannte Artlangs. Sie basieren auf der Phonetik echter Sprachen, sind
+        aber klangliche Kreuzungen daraus. Wenn man zuhört, hören sie sich vertraut und wie ganz
+        normale Sprachen an, aber man kann sie schlicht nicht übersetzen. Dieser Tower-of-Babel-
+        Effekt ist der eigentliche Kern des Projekts. Er führt einem vor Augen, dass man die
+        Sprache eines Liedes gar nicht verstehen muss, um die Musik zu fühlen und sich an ihr zu
+        erfreuen. Man braucht keine verständlichen Worte, um Trost oder Verbindung zu finden.
+      </p>
+      <p>
+        »Synthetic Union« ist damit eine Hommage an die ursprüngliche Idee des ESC. Eine geschaffene
+        Welt, in der die Musik wieder im Zentrum steht.
       </p>
     </section>
   );
@@ -721,7 +776,7 @@ export default function App() {
               Zurück zur Startseite
             </a>
             <div className="legal-grid">
-              {isPrivacyPage ? privacyContent : imprintContent}
+              {isPrivacyPage ? privacyContent : isImprintPage ? imprintContent : aboutContent}
             </div>
           </div>
         </main>
@@ -762,6 +817,9 @@ export default function App() {
                 >
                   Voting-Ergebnisse
                 </button>
+                <a className="secondary-button" href="/ueber-synthetic-union">
+                  Über Synthetic Union
+                </a>
               </div>
 
             </div>
@@ -816,6 +874,9 @@ export default function App() {
                   {section.label}
                 </button>
               ))}
+              <a className="tab-button" href="/ueber-synthetic-union">
+                Über Synthetic Union
+              </a>
             </nav>
           </section>
         )}
@@ -1210,6 +1271,7 @@ export default function App() {
       </main>
       <footer className="legal-footer">
         <div className="legal-links">
+          <a href="/ueber-synthetic-union">Über</a>
           <a href="/datenschutz">Datenschutz</a>
           <a href="/impressum">Impressum</a>
         </div>
